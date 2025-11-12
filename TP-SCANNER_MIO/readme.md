@@ -76,20 +76,19 @@ Cualquier carácter no reconocido genera el token:
 
 ## Especificación Sintáctica
 ```ebnf
-Especificación Sintáctica
 
 unidad_traduccion → declaration
 
 declaration → tipo declarator ;
 
 tipo → int
-| char
-| void
+    | char
+    | void
 
 declarator → Ident
-| * declarator
-| ( declarator )
-| declarator [ IntLiteral ]
-| declarator ( )
+            | * declarator
+            | ( declarator )
+            | declarator [ IntLiteral ]
+            | declarator ( )
 ```
 
