@@ -39,8 +39,8 @@ Para cada lexema reconocido, el escáner devuelve un objeto token con el tipo y,
 
 ### 3. Palabras Clave (Keywords)
 **Categoría:** Tipo  
-**Token:** `Int`, `Char`  
-**Regex:** `(int|char)`  
+**Token:** `Int`, `Char`, `Void`
+**Regex:** `(int|char|void)`  
 
 
 
@@ -73,4 +73,20 @@ Si coincide con una palabra clave, se emite como *keyword*.
 
 ### 7. Errores Léxicos
 Cualquier carácter no reconocido genera el token:  
+
+## Especificación Sintáctica
+
+unidad_traduccion → declaration
+
+declaration → tipo declarator ;
+
+tipo → int
+     | char
+     | void
+
+declarator → Ident
+            | * declarator
+            | ( declarator )
+            | declarator [ IntLiteral ]
+            | declarator ( )
 
