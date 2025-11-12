@@ -75,19 +75,21 @@ Si coincide con una palabra clave, se emite como *keyword*.
 Cualquier carácter no reconocido genera el token:  
 
 ## Especificación Sintáctica
+```ebnf
+Especificación Sintáctica
 
-unidad_traduccion  → declaration
+unidad_traduccion → declaration
 
-declaration        → tipo declarator ;
+declaration → tipo declarator ;
 
-tipo               → int
-                   | char
-                   | void
+tipo → int
+| char
+| void
 
-declarator         → Ident
-                   | * declarator
-                   | ( declarator )
-                   | declarator [ IntLiteral ]
-                   | declarator ( )
-
+declarator → Ident
+| * declarator
+| ( declarator )
+| declarator [ IntLiteral ]
+| declarator ( )
+```
 
