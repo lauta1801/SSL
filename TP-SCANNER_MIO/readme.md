@@ -15,50 +15,62 @@ Para cada lexema reconocido, el escáner devuelve un objeto token con el tipo y,
 
 ## Especificación Léxica
 
-### 1. Prioridad de reconocimiento:  
-  1. Espacios y comentarios (ignorar)  
-  2. Palabras clave  
-  3. Identificadores  
-  4. Números  
-  5. Símbolos  
-  6. Errores léxicos  
+### 1. Prioridad de reconocimiento
+1. Espacios y comentarios (ignorar)  
+2. Palabras clave  
+3. Identificadores  
+4. Números  
+5. Símbolos  
+6. Errores léxicos  
+
+---
 
 ### 2. Espacios en Blanco y Comentarios
-| Tipo | Regex | Acción |
-|------|--------|---------|
-| **Whitespace** | `([ \t\r\n])+` | Ignorar |
-| **Comentario bloque** | `/\*.*?\*/` | Ignorar |
-| **Comentario línea** | `//[^\r\n]*` | Ignorar |
+**Whitespace:** `([ \t\r\n])+`  
+**Acción:** Ignorar  
+
+**Comentario bloque:** `/\*.*?\*/`  
+**Acción:** Ignorar  
+
+**Comentario línea:** `//[^\r\n]*`  
+**Acción:** Ignorar  
+
+---
 
 ### 3. Palabras Clave (Keywords)
-| Categoría | Token | Regex |
-|------------|--------|--------|
-| **Tipo** | `Int`, `Char` | `int|char` |
+**Categoría:** Tipo  
+**Token:** `Int`, `Char`  
+**Regex:** `(int|char)`  
+
+---
 
 ### 4. Identificadores
-| Token | Regex | Descripción |
-|--------|--------|-------------|
-| `Ident` | `[A-Za-z_][A-Za-z0-9_]*` | Nombres de variables, funciones o tipos definidos por el usuario. Si coincide con palabra clave, se emite como keyword. |
+**Token:** `Ident`  
+**Regex:** `[A-Za-z_][A-Za-z0-9_]*`  
+**Descripción:** Nombres de variables, funciones o tipos definidos por el usuario.  
+Si coincide con una palabra clave, se emite como *keyword*.  
 
+---
 
 ### 5. Números
-| Token | Regex | Descripción |
-|--------|--------|-------------|
-| `IntLiteral` | `(0|[1-9][0-9]*)` | Enteros positivos decimales simples. |
+**Token:** `IntLiteral`  
+**Regex:** `(0|[1-9][0-9]*)`  
+**Descripción:** Enteros positivos decimales simples.  
 
+---
 
 ### 6. Símbolos y Punctuators
-| Símbolo | Token |
-|----------|--------|
-| `*` | `Asterisk` |
-| `(` | `LParen` |
-| `)` | `RParen` |
-| `[` | `LBrack` |
-| `]` | `RBrack` |
-| `,` | `Comma` |
-| `;` | `Semicolon` *(opcional)* |
+**Símbolos reconocidos:**  
+`*` → `Asterisk`  
+`(` → `LParen`  
+`)` → `RParen`  
+`[` → `LBrack`  
+`]` → `RBrack`  
+`,` → `Comma`  
+`;` → `Semicolon` *(opcional)*  
 
+---
 
 ### 7. Errores Léxicos
-Cualquier carácter no reconocido genera el token:
+Cualquier carácter no reconocido genera el token:  
 
