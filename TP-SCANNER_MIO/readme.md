@@ -13,4 +13,67 @@ Para cada lexema reconocido, el escáner devuelve un objeto token con el tipo y,
 
 ##Especificación Expresiones Regulares de scanner: https://docs.google.com/document/d/1y-_tjjBD1hESLqQM05xO9RgVXsvGFq8Xs_GuUzTRvJM/edit?tab=t.0
 
+## Especificación Léxica
+
+### 1. Convenciones Generales
+- **Alfabeto:** ASCII / UTF-8  
+- **Case-sensitive:** `const` ≠ `Const`  
+- **Regla de máxima captura (max-munch):** el scanner toma el lexema más largo.  
+- **Prioridad de reconocimiento:**  
+  1. Espacios y comentarios (ignorar)  
+  2. Palabras clave  
+  3. Identificadores  
+  4. Números  
+  5. Símbolos  
+  6. Errores léxicos  
+
+---
+
+### 2. Espacios en Blanco y Comentarios
+| Tipo | Regex | Acción |
+|------|--------|---------|
+| **Whitespace** | `([ \t\r\n])+` | Ignorar |
+| **Comentario bloque** | `/\*.*?\*/` | Ignorar |
+| **Comentario línea** | `//[^\r\n]*` | Ignorar |
+
+---
+
+### 3. Palabras Clave (Keywords)
+| Categoría | Token | Regex |
+|------------|--------|--------|
+| **Tipo** | `Void`, `Char`, `Int`, `Float`, `Double`, etc. | `void|char|short|int|long|signed|unsigned|float|double` |
+| **Calificador** | `Const`, `Volatile` | `const|volatile` |
+| *(Opcional)* | `Struct`, `Union`, `Enum` | `struct|union|enum` |
+
+---
+
+### 4. Identificadores
+| Token | Regex | Descripción |
+|--------|--------|-------------|
+| `Ident` | `[A-Za-z_][A-Za-z0-9_]*` | Nombres de variables, funciones o tipos definidos por el usuario. Si coincide con palabra clave, se emite como keyword. |
+
+---
+
+### 5. Números
+| Token | Regex | Descripción |
+|--------|--------|-------------|
+| `IntLiteral` | `(0|[1-9][0-9]*)` | Enteros positivos decimales simples. |
+
+---
+
+### 6. Símbolos y Punctuators
+| Símbolo | Token |
+|----------|--------|
+| `*` | `Asterisk` |
+| `(` | `LParen` |
+| `)` | `RParen` |
+| `[` | `LBrack` |
+| `]` | `RBrack` |
+| `,` | `Comma` |
+| `;` | `Semicolon` *(opcional)* |
+
+---
+
+### 7. Errores Léxicos
+Cualquier carácter no reconocido genera el token:
 
