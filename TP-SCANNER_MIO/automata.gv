@@ -1,0 +1,40 @@
+digraph AutomataFSM {
+    rankdir=LR;
+
+    // Estados
+    INICIO    [shape=circle];
+    IDENT     [shape=circle];
+    NUMERO    [shape=circle];
+    STRING    [shape=circle];
+    CHAR      [shape=circle];
+    OPERADOR  [shape=circle];
+    DELIM     [shape=circle];
+    FIN       [shape=circle];
+    ERROR     [shape=circle];
+
+    // Transiciones 
+    INICIO -> IDENT    [label="letra"];
+    INICIO -> NUMERO   [label="dígito"];
+    INICIO -> STRING   [label="\""];
+    INICIO -> CHAR     [label="'"];
+    INICIO -> OPERADOR [label="+ - * / = < >"];
+    INICIO -> DELIM    [label="; ,"];
+    INICIO -> FIN      [label="EOF"];
+    INICIO -> ERROR    [label="otro"];
+
+    IDENT -> IDENT [label="letra o dígito"];
+    IDENT -> INICIO [label="otro"];
+
+    NUMERO -> NUMERO [label="dígito"];
+    NUMERO -> INICIO [label="otro"];
+
+    STRING -> STRING [label="carácter"];
+    STRING -> INICIO [label="\""];
+    STRING -> ERROR  [label="EOF"];
+
+    CHAR -> INICIO [label="'"];
+    CHAR -> ERROR  [label="EOF"];
+
+    OPERADOR -> INICIO [label="otro"];
+    DELIM -> INICIO    [label="otro"];
+}

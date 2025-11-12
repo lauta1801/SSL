@@ -1,0 +1,160 @@
+Flujo Principal 
+token-stream :
+  ignored_opt token token-stream
+  /* vacío */
+
+ignored _opt :
+  ignored
+  /* vacío */
+
+ignored :
+  whitespace
+  ignored ignored
+  comment
+  ignored comment
+
+Espacios:
+whitespace :
+  whitespace-char
+  whitespace whitespace-char 
+
+whitespace-char : one of
+  ' '  '\t'  '\r'  '\n'
+
+Comentarios:
+comment :
+  line-comment
+  block-comment
+
+Comentario de línea:
+line-comment :
+  '/' '/' line-body line-end_opt
+
+line-body :
+  line-char
+  line-body line-char
+
+line-char :
+  any-char-except('\n')
+
+line-end _opt :
+  '\n'
+  /* vacío */
+
+
+Comentario de bloque:
+block-comment :
+  '/' '*' block-body '*' '/'
+block-body :
+  block-piece
+  block-body block-piece
+
+block-piece :
+  any-char-except('*')
+  '*' any-char-except('/')
+
+Tokens
+token :
+  keyword
+  identifier
+  integer
+  char-const
+  string-lit
+  punct
+
+keyword :
+  "if"
+  "else"
+  "while"
+  "for"
+  "return"
+  "int"
+  "char"
+  "float"
+  "void"
+
+Identificadores:
+
+identifier :
+  nondigit
+  identifier nondigit
+  identifier digit
+
+nondigit : one of
+  '_' a b c d e f g h i j k l m
+  n o p q r s t u v w x y z
+  A B C D E F G H I J K L M
+  N O P Q R S T U V W X Y Z
+
+digit : one of
+  0 1 2 3 4 5 6 7 8 9
+
+Enteros decimales:
+
+integer :
+  digit
+  integer digit
+
+Constante de Caracteres:
+
+char-const :
+  '\'' c-char '\''
+
+c-char :
+  escape-seq
+  c-char-plain
+
+c-char-plain :
+  any-char-except('\'' , '\\' , '\n')
+
+escape-seq :
+  '\\' esc-code
+
+esc-code : one of
+  'n' 't' 'r' '"' '\'' '\\'
+
+Literales de String:
+
+string-lit :
+  '"' s-chars_opt '"'
+
+s-chars _opt :
+  s-chars
+  /* vacío */
+
+s-chars :
+  s-char
+  s-chars s-char
+
+s-char :
+  escape-seq
+  s-char-plain
+
+s-char-plain :
+  any-char-except('"' , '\\' , '\n')
+
+Puntuación / Operadores:
+
+punct :
+  "("
+  ")"
+  "{"
+  "}"
+  ";"
+  ","
+  "=="
+  "!="
+  "<="
+  ">="
+  "&&"
+  "||"
+  "="
+  "<"
+  ">"
+  "+"
+  "-"
+  "*"
+  "/"
+
+
+
