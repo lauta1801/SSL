@@ -92,3 +92,44 @@ declarator → Ident
             | declarator ( )
 ```
 
+## Especificación Semántica
+
+Las reglas semánticas principales son las siguientes:
+
+1. Regla de declaración:
+   declaration → tipo declarator ;
+   Acción semántica:
+   LN(declaration) = LN(declarator) + " es " + descripción(LN(tipo))
+
+2. Regla de tipo base:
+   tipo → int | char | void
+   Acción semántica:
+   LN(tipo) = "entero" | "carácter" | "void"
+
+3. Declarador simple:
+   declarator → Ident
+   Acción semántica:
+   LN(declarator) = nombre(Ident)
+
+4. Declarador puntero:
+   declarator → * declarator
+   Acción semántica:
+   LN(declarator) = LN(declarator₂) + " puntero a"
+
+5. Declarador arreglo (array):
+   declarator → declarator [ IntLiteral ]
+   Acción semántica:
+   LN(declarator) = LN(declarator₁) + " arreglo de " + valor(IntLiteral)
+
+6. Declarador función:
+   declarator → declarator ( )
+   Acción semántica:
+   LN(declarator) = LN(declarator₁) + " función que devuelve"
+
+7. Agrupaciones con paréntesis:
+   declarator → ( declarator )
+   Acción semántica:
+   LN(declarator) = LN(contenido de declarator)
+
+
+
