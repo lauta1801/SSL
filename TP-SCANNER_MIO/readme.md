@@ -10,7 +10,7 @@ Finalmente, el análisis semántico es la etapa que interpreta el significado de
 
 En conclusión, el traductor dcl toma una declaración del lenguaje C y la convierte en una frase clara y entendible en lenguaje natural. El análisis léxico se ocupa de identificar los componentes del texto, el análisis sintáctico verifica su estructura, y el análisis semántico interpreta su significado. De esta forma, se logra describir correctamente cualquier declaración simple del lenguaje C, como punteros, arreglos o funciones, de manera comprensible para una persona sin conocimientos técnicos del código.
 
-
+```ebnf
 ## Especificación Léxica
 
 ### 1. Prioridad de reconocimiento
@@ -71,7 +71,7 @@ Si coincide con una palabra clave, se emite como *keyword*.
 
 ### 7. Errores Léxicos
 Cualquier carácter no reconocido genera el token:  
-
+```
 ## Especificación Sintáctica
 ```ebnf
 
