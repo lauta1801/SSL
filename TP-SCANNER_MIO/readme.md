@@ -27,7 +27,7 @@ Para cada lexema reconocido, el escáner devuelve un objeto token con el tipo y,
   5. Símbolos  
   6. Errores léxicos  
 
----
+
 
 ### 2. Espacios en Blanco y Comentarios
 | Tipo | Regex | Acción |
@@ -36,7 +36,6 @@ Para cada lexema reconocido, el escáner devuelve un objeto token con el tipo y,
 | **Comentario bloque** | `/\*.*?\*/` | Ignorar |
 | **Comentario línea** | `//[^\r\n]*` | Ignorar |
 
----
 
 ### 3. Palabras Clave (Keywords)
 | Categoría | Token | Regex |
@@ -45,21 +44,19 @@ Para cada lexema reconocido, el escáner devuelve un objeto token con el tipo y,
 | **Calificador** | `Const`, `Volatile` | `const|volatile` |
 | *(Opcional)* | `Struct`, `Union`, `Enum` | `struct|union|enum` |
 
----
+
 
 ### 4. Identificadores
 | Token | Regex | Descripción |
 |--------|--------|-------------|
 | `Ident` | `[A-Za-z_][A-Za-z0-9_]*` | Nombres de variables, funciones o tipos definidos por el usuario. Si coincide con palabra clave, se emite como keyword. |
 
----
 
 ### 5. Números
 | Token | Regex | Descripción |
 |--------|--------|-------------|
 | `IntLiteral` | `(0|[1-9][0-9]*)` | Enteros positivos decimales simples. |
 
----
 
 ### 6. Símbolos y Punctuators
 | Símbolo | Token |
@@ -72,7 +69,6 @@ Para cada lexema reconocido, el escáner devuelve un objeto token con el tipo y,
 | `,` | `Comma` |
 | `;` | `Semicolon` *(opcional)* |
 
----
 
 ### 7. Errores Léxicos
 Cualquier carácter no reconocido genera el token:
