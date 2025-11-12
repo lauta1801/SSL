@@ -15,19 +15,13 @@ Para cada lexema reconocido, el escáner devuelve un objeto token con el tipo y,
 
 ## Especificación Léxica
 
-### 1. Convenciones Generales
-- **Alfabeto:** ASCII / UTF-8  
-- **Case-sensitive:** `const` ≠ `Const`  
-- **Regla de máxima captura (max-munch):** el scanner toma el lexema más largo.  
-- **Prioridad de reconocimiento:**  
+### 1. Prioridad de reconocimiento:  
   1. Espacios y comentarios (ignorar)  
   2. Palabras clave  
   3. Identificadores  
   4. Números  
   5. Símbolos  
   6. Errores léxicos  
-
-
 
 ### 2. Espacios en Blanco y Comentarios
 | Tipo | Regex | Acción |
@@ -36,15 +30,10 @@ Para cada lexema reconocido, el escáner devuelve un objeto token con el tipo y,
 | **Comentario bloque** | `/\*.*?\*/` | Ignorar |
 | **Comentario línea** | `//[^\r\n]*` | Ignorar |
 
-
 ### 3. Palabras Clave (Keywords)
 | Categoría | Token | Regex |
 |------------|--------|--------|
-| **Tipo** | `Void`, `Char`, `Int`, `Float`, `Double`, etc. | `void|char|short|int|long|signed|unsigned|float|double` |
-| **Calificador** | `Const`, `Volatile` | `const|volatile` |
-| *(Opcional)* | `Struct`, `Union`, `Enum` | `struct|union|enum` |
-
-
+| **Tipo** | `Int`, `Char` | `int|char` |
 
 ### 4. Identificadores
 | Token | Regex | Descripción |
