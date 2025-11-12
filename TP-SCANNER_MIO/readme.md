@@ -93,7 +93,7 @@ declarator → Ident
 ```
 
 ## Especificación Semántica
-
+```ebnf
 Las reglas semánticas principales son las siguientes:
 
 1. Regla de declaración:
@@ -131,5 +131,5 @@ Las reglas semánticas principales son las siguientes:
    Acción semántica:
    LN(declarator) = LN(contenido de declarator)
 
-
+```
 
